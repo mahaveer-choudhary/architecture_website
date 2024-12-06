@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .contact-us-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('https://source.unsplash.com/1600x900/?architecture,building') no-repeat center center fixed;
+            background-size: cover;
+            padding: 0 20px;
+        }
+
+        .contact-us-form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 40px 60px;
+            width: 80%;
+            max-width: 1000px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .contact-us-form-contacts {
+            font-size: 16px;
+            color: #333;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .intro-text {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .intro-text p {
+            margin: 10px 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #333;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #007bff;
+            background-color: #f0f8ff;
+            outline: none;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-container input {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .checkbox-container label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-us-form-send-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-us-form-send-button:hover {
+            background-color: #0056b3;
+        }
+
+        .call-us {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .call-us-text {
+            font-size: 16px;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        .phone-number {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .phone-number:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .call-us {
+                margin-top: 20px;
+                text-align: left;
+            }
+
+            .contact-us-form-container {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contact-us-form">
+        <div class="contact-us-form-container">
+            <div class="contact-us-form-contacts">CONTACT US</div>
+            <h1>Let’s Work Together</h1>
+            
+            <div class="intro-text">
+                <p>At Magnificent, we specialize in creating beautiful, functional spaces. Whether it’s residential, commercial, or landscape design, we bring your vision to life.</p>
+                <p>Fill out the form below, and our team will contact you soon to discuss how we can bring your ideas to fruition. We also offer free consultations to get you started on the right path!</p>
+            </div>
+
+            <form id="formdata">
+                <div class="form-grid">
+                    <input type="text" name="name" placeholder="Your Name *" required>
+                    <input type="text" name="company" placeholder="Company Name (optional)">
+                    <input type="tel" name="phone" placeholder="Phone Number *" required>
+                    <input type="email" name="email" placeholder="Your Email *" required>
+                </div>
+                <textarea placeholder="Tell us about your project..." required></textarea>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="contact-us-confirm" required>
+                    <label for="contact-us-confirm">I confirm that I have read the privacy policy and agree to the terms.</label>
+                </div>
+                <div class="form-footer">
+                    <button type="submit" name="submit" class="contact-us-form-send-button">Send Message</button>
+                    <div class="call-us">
+                        <div class="call-us-text">Or give us a call:</div>
+                        <a href="tel:042175297" class="phone-number">042175297</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contact-us-confirm').addEventListener('change', function () {
+            const sendButton = document.querySelector('.contact-us-form-send-button');
+            sendButton.style.backgroundColor = this.checked ? '#28a745' : '#007bff';
+        });
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzw5f2sJl7Jv-rNnQUEBKf1gt0RVklIvm1miIhBmbnnzlYfwn8b--Fomz5foW9_i9ow/exec'
+
+        const form = document.forms['formdata']
+
+        form.addEventListener('submit', e => {
+
+            e.preventDefault()
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => alert("Thank you! Form is submitted"))
+                .then(() => { window.location.reload(); })
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule a Call</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .contact-us-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('https://source.unsplash.com/1600x900/?architecture,building') no-repeat center center fixed;
+            background-size: cover;
+            padding: 0 20px;
+        }
+
+        .contact-us-form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px 60px;
+            width: 80%;
+            max-width: 1000px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #333;
+            background-color: #fff;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #007bff;
+            background-color: #f0f8ff;
+            outline: none;
+        }
+
+        textarea {
+            grid-column: span 2;
+            resize: none;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-container input {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .checkbox-container label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-us-form-send-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-us-form-send-button:hover {
+            background-color: #0056b3;
+        }
+
+        .whatsapp-chat-button {
+            text-align: right;
+            font-size: 16px;
+            color: #25d366;
+            text-decoration: none;
+        }
+
+        .whatsapp-chat-button:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-us-form-container {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contact-us-form">
+        <div class="contact-us-form-container">
+            <h1>Schedule a Call</h1>
+            <div class="intro-text">
+                <p>Let us help you bring your vision to life. Schedule a call with us and discuss your project today!
+                </p>
+            </div>
+            <form id="calldata">
+                <div class="form-grid">
+                    <input type="text" name="name" placeholder="Your Name *" required>
+                    <input type="text" name="company" placeholder="Company Name (optional)">
+                    <input type="tel" name="phone" placeholder="Phone Number *" required>
+                    <input type="email" name="email" placeholder="Your Email *" required>
+                    <input type="date" name="scheduleDate" placeholder="Preferred Date *" required>
+                    <input type="time" name="scheduleTime" placeholder="Preferred Time *" required>
+                </div>
+                <textarea name="message" placeholder="Tell us about your project..." required></textarea>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="privacy-policy" required>
+                    <label for="privacy-policy">I confirm that I have read the privacy policy and agree to the
+                        terms.</label>
+                </div>
+                <div class="form-footer">
+                    <button type="submit" name="submit" class="contact-us-form-send-button">Schedule Call</button>
+                    <a href="https://wa.me/6378901819" target="_blank" class="whatsapp-chat-button">Chat on WhatsApp</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('privacy-policy').addEventListener('change', function () {
+            const sendButton = document.querySelector('.contact-us-form-send-button');
+            sendButton.style.backgroundColor = this.checked ? '#28a745' : '#007bff';
+        });
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz1PNM3MCKb4OF_STDWb67V7U4-enY6vGSVUY2xemeolwMsvMhtqjrzknIumV0BdZeAPw/exec'
+
+        const form = document.forms['calldata']
+
+        form.addEventListener('submit', e => {
+
+            e.preventDefault()
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => alert("Thank you! Form is submitted"))
+                .then(() => { window.location.reload(); })
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+
+</html>
